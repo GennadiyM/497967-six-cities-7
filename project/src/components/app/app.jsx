@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MainScreen from '../main-screen/main-screen';
+import placeCardProp from '../place-card/place-card.prop';
 
 function App(props) {
   const {maxCountCards, places} = props;
@@ -15,16 +16,7 @@ function App(props) {
 App.propTypes = {
   maxCountCards: PropTypes.number.isRequired,
   places: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      previewImage: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      type: PropTypes.string.isRequired,
-      rating: PropTypes.number.isRequired,
-      isPremium: PropTypes.bool.isRequired,
-      isFavorite: PropTypes.bool.isRequired,
-    }),
+    placeCardProp,
   ).isRequired,
 };
 

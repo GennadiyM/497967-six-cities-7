@@ -1,5 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import placeCardProp from './place-card.prop';
+import './place-card.css';
 
 const FULL_RATING = 100;
 const COUNT_STARS = 5;
@@ -10,8 +11,7 @@ const getRating = (rating) => rating * FULL_RATING / COUNT_STARS;
 const getFirstSymbolUppercase = (str) => str[0].toUpperCase() + str.slice(1);
 
 function PlaceCard(props) {
-  const {place} = props;
-  const {previewImage, title, price, type, rating, isPremium, isFavorite} = place;
+  const {previewImage, title, price, type, rating, isPremium, isFavorite} = props.place;
 
   return (
     <article className="cities__place-card place-card">
@@ -54,15 +54,7 @@ function PlaceCard(props) {
 }
 
 PlaceCard.propTypes = {
-  place: PropTypes.shape({
-    previewImage: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    isFavorite: PropTypes.bool.isRequired,
-  }).isRequired,
+  place: placeCardProp,
 };
 
 export default PlaceCard;

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card';
+import placeCardProp from '../place-card/place-card.prop';
 
 function MainScreen(props) {
   const {maxCountCards, places} = props;
@@ -94,7 +95,7 @@ function MainScreen(props) {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {places.map((place) => <PlaceCard key={place.id} place={place}/>).slice(Math.max(maxCountCards, places.lenght))}
+                {places.map((place) => <PlaceCard key={place.id} place={place}/>).slice(0, maxCountCards)}
               </div>
             </section>
             <div className="cities__right-section">
@@ -110,16 +111,7 @@ function MainScreen(props) {
 MainScreen.propTypes = {
   maxCountCards: PropTypes.number.isRequired,
   places: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      previewImage: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      type: PropTypes.string.isRequired,
-      rating: PropTypes.number.isRequired,
-      isPremium: PropTypes.bool.isRequired,
-      isFavorite: PropTypes.bool.isRequired,
-    }),
+    placeCardProp,
   ).isRequired,
 };
 
