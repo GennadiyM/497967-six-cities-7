@@ -3,50 +3,46 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../../ui/header/header';
 import FavoritesList from '../../favorites-list/favorites-list';
-import PlaceCard from '../../place-card/place-card';
+import FavoritesEmpty from '../../favorites-empty/favorites-empty';
 import Footer from '../../ui/footer/footer';
 import placeCardProp from '../../place-card/place-card.prop';
 
-const Favorites = (props) => {
-    const {places, cityNames} = props;
+const getFavoritePlacesOnSity = (favoritePlaces, city) => (
+  {
+    name: city,
+    places: favoritePlaces.filter((place) => place.city.name === city),
+  }
+);
 
-    const favoritePlaces = places.filter((place) => {
-      return place.isFavorite;
-    });
+function Favorites (props) {
+  const {places, cityNames} = props;
 
-    const favoritePlacesOnSity = cityNames.map((city) => {
-      return {
-        name: city,
-        places: favoritePlaces.filter((place) => {
-          return place.city.name === city;
-        }),
-      }
-    }).filter((city) => {
-      return city.places.length !== 0;
-    });
+  const favoritePlaces = places.filter((place) => place.isFavorite);
 
-    return (
+  const favoritePlacesOnSity = cityNames.map((city) => getFavoritePlacesOnSity(favoritePlaces, city)).filter((city) => city.places.length !== 0);
+
+  return (
     <div className="page">
       <Header />
 
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
-          {favoritePlacesOnSity.length !== 0 ? <FavoritesList favoritePlaces={favoritePlacesOnSity}/> : 'sdfsdfsdfsdf'}
+          {favoritePlacesOnSity.length !== 0 ? <FavoritesList favoritePlacesOnSity={favoritePlacesOnSity}/> : <FavoritesEmpty />}
         </div>
       </main>
 
       <Footer />
 
     </div>
-    );
-};
+  );
+}
 
 Favorites.propTypes = {
   places: PropTypes.arrayOf(
     placeCardProp,
   ).isRequired,
   cityNames: PropTypes.arrayOf(
-    PropTypes.string.isRequired
+    PropTypes.string.isRequired,
   ).isRequired,
 };
 

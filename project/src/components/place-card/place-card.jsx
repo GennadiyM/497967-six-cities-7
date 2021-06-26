@@ -24,10 +24,16 @@ export const Setting = {
     imgHeight: '110',
     infoClass: 'favorites__card-info place-card__info',
   },
-}
+  NEAR_PLACE_CARD: {
+    mainClass: 'near-places__card',
+    imageWrapperClass: 'near-places__image-wrapper',
+    imgWidth: '260',
+    imgHeight: '200',
+    infoClass: 'place-card__info',
+  },
+};
 
 const getRating = (rating) => rating * FULL_RATING / COUNT_STARS;
-const getFirstSymbolUppercase = (str) => str[0].toUpperCase() + str.slice(1);
 
 function PlaceCard(props) {
   const {previewImage, title, price, type, rating, isPremium, isFavorite} = props.place;
@@ -67,7 +73,7 @@ function PlaceCard(props) {
         <h2 className="place-card__name">
           <a href="#">{title}</a>
         </h2>
-        <p className="place-card__type">{getFirstSymbolUppercase(type)}</p>
+        <p className="place-card__type">{type}</p>
       </div>
     </article>
   );

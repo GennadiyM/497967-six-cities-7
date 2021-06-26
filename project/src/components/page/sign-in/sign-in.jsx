@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from '../../ui/header/header';
 
-const LoginPage = () => {
-    return (
+function LoginPage() {
+  return (
     <div className="page page--gray page--login">
       <Header />
 
@@ -32,7 +32,7 @@ const LoginPage = () => {
         </div>
       </main>
     </div>
-    );
-};
+  );
+}
 
 export default LoginPage;

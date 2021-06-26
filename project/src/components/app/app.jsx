@@ -1,8 +1,10 @@
 import React from 'react';
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { AppRoute } from '../../const';
 import MainPage from '../page/main/main';
 import SignPage from '../page/sign-in/sign-in';
+import RoomPage from '../page/room/room';
 import NotFoundPage from '../page/not-found/not-found';
 import FavoritesPage from '../page/favorites/favorites';
 import placeCardProp from '../place-card/place-card.prop';
@@ -12,21 +14,22 @@ function App(props) {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
+        <Route exact path={AppRoute.ROOT}>
           <MainPage
-            maxCountCards = {maxCountCards}
-            places = {places}
+            maxCountCards={maxCountCards}
+            places={places}
           />
         </Route>
-        <Route exact path="/login">
+        <Route exact path={AppRoute.LOGIN}>
           <SignPage />
         </Route>
-        <Route exact path="/favorites">
+        <Route exact path={AppRoute.FAVORITES}>
           <FavoritesPage
-            places = {places}
-            cityNames = {cityNames}
+            places={places}
+            cityNames={cityNames}
           />
         </Route>
+        <Route exact path={AppRoute.OFFER} component={RoomPage}/>
         <Route>
           <NotFoundPage />
         </Route>
@@ -41,7 +44,7 @@ App.propTypes = {
     placeCardProp,
   ).isRequired,
   cityNames: PropTypes.arrayOf(
-    PropTypes.string.isRequired
+    PropTypes.string.isRequired,
   ).isRequired,
 };
 
