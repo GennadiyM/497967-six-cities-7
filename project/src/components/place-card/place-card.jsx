@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import placeCardProp from './place-card.prop';
+import { CardSetting } from '../../const';
 import './place-card.css';
 
 const FULL_RATING = 100;
@@ -7,28 +9,46 @@ const COUNT_STARS = 5;
 const TEMPLATE_PREMIUM = <div className="place-card__mark"><span>Premium</span></div>;
 const FAVORITE_CLASS = 'place-card__bookmark-button--active';
 
+export const Setting = {
+  PLACE_CARD: {
+    mainClass: 'cities__place-card',
+    imageWrapperClass: 'cities__image-wrapper',
+    imgWidth: '260',
+    imgHeight: '200',
+    infoClass: 'place-card__info',
+  },
+  FAVORITES_CARD: {
+    mainClass: 'favorites__card',
+    imageWrapperClass: 'favorites__image-wrapper',
+    imgWidth: '150',
+    imgHeight: '110',
+    infoClass: 'favorites__card-info place-card__info',
+  },
+}
+
 const getRating = (rating) => rating * FULL_RATING / COUNT_STARS;
 const getFirstSymbolUppercase = (str) => str[0].toUpperCase() + str.slice(1);
 
 function PlaceCard(props) {
   const {previewImage, title, price, type, rating, isPremium, isFavorite} = props.place;
+  const {modifier = CardSetting.PLACE_CARD} = props;
 
   return (
-    <article className="cities__place-card place-card">
+    <article className={`${Setting[modifier].mainClass} place-card`}>
       {isPremium ? TEMPLATE_PREMIUM : ''}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${Setting[modifier].imageWrapperClass} place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt={title} />
+          <img className="place-card__image" src={previewImage} width={Setting[modifier].imgWidth} height={Setting[modifier].imgHeight} alt={title} />
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={Setting[modifier].infoClass}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className={`place-card__bookmark-button button ${isFavorite ? FAVORITE_CLASS : ''}`} type="button">
-            <svg className="place-card__bookmark-icon"  width="18" height="19">
+            <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
             <span className="visually-hidden">To bookmarks</span>
@@ -55,6 +75,7 @@ function PlaceCard(props) {
 
 PlaceCard.propTypes = {
   place: placeCardProp,
+  modifier: PropTypes.string,
 };
 
 export default PlaceCard;

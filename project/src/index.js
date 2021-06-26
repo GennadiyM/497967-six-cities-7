@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
+import { SITY_NAMES } from './const';
 
 const Setting = {
   MAX_COUNT_CARDS: 5,
@@ -8,6 +9,9 @@ const Setting = {
 
 const places = [
   {
+    city: {
+      name: 'Amsterdam',
+    },
     id: '1',
     previewImage: 'img/apartment-01.jpg',
     title: 'Beautiful luxurious apartment at great location',
@@ -15,9 +19,12 @@ const places = [
     type: 'apartment',
     rating: 5,
     isPremium: true,
-    isFavorite: false,
+    isFavorite: true,
   },
   {
+    city: {
+      name: 'Amsterdam',
+    },
     id: '2',
     previewImage: 'img/room.jpg',
     title: 'Wood and stone place',
@@ -28,6 +35,9 @@ const places = [
     isFavorite: true,
   },
   {
+    city: {
+      name: 'Cologne',
+    },
     id: '3',
     title: 'Canal View Prinsengracht',
     previewImage: 'img/apartment-02.jpg',
@@ -38,6 +48,9 @@ const places = [
     isFavorite: false,
   },
   {
+    city: {
+      name: 'Cologne',
+    },
     id: '4',
     title: 'Nice, cozy, warm big bed apartment',
     previewImage: 'img/apartment-03.jpg',
@@ -47,7 +60,9 @@ const places = [
     isPremium: false,
     isFavorite: false,
   },
-  {
+    {city: {
+      name: 'Cologne',
+    },
     id: '5',
     previewImage: 'img/room.jpg',
     title: 'Wood and stone place',
@@ -64,6 +79,8 @@ ReactDOM.render(
     <App
       maxCountCards = {Setting.MAX_COUNT_CARDS}
       places = {places}
+      cityNames = {SITY_NAMES}
     />
   </React.StrictMode>,
-  document.getElementById('root'));
+  document.getElementById('root')
+);

@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 
 export default PropTypes.shape({
+  city: PropTypes.shape({
+    name: PropTypes.string,
+  }).isRequired,
   previewImage: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
