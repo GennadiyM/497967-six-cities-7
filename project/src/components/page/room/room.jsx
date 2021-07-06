@@ -3,7 +3,7 @@ import Header from '../../ui/header/header';
 import NearPlacesList from '../../near-places/near-places-list';
 import { places } from '../../../mock';
 
-const MAC_COUNT_NEARBY_PLACE = 3;
+const MAC_COUNT = 3;
 
 function Room () {
   return (
@@ -205,7 +205,7 @@ function Room () {
           <section className="property__map map"></section>
         </section>
         <div className="container">
-          <NearPlacesList nearbyPlaces={places.slice(0, MAC_COUNT_NEARBY_PLACE)} />
+          <NearPlacesList nearbyPlaces={places.slice(0, MAC_COUNT)} />
         </div>
       </main>
     </div>

@@ -33,6 +33,7 @@ export const Setting = {
   },
 };
 
+
 const getRating = (rating) => rating * FULL_RATING / COUNT_STARS;
 
 function PlaceCard(props) {
@@ -81,7 +82,7 @@ function PlaceCard(props) {
 
 PlaceCard.propTypes = {
   place: placeCardProp,
-  modifier: PropTypes.string,
+  modifier: PropTypes.oneOf(['PLACE_CARD', 'FAVORITES_CARD', 'NEAR_PLACE_CARD']),
 };
 
 export default PlaceCard;
