@@ -10,7 +10,8 @@ import FavoritesPage from '../page/favorites/favorites';
 import placeCardProp from '../place-card/place-card.prop';
 
 function App(props) {
-  const {maxCountCards, places, cityNames} = props;
+  const { maxCountCards, places, cityNames } = props;
+
   return (
     <BrowserRouter>
       <Switch>
@@ -18,6 +19,7 @@ function App(props) {
           <MainPage
             maxCountCards={maxCountCards}
             places={places}
+            cityNames={cityNames}
           />
         </Route>
         <Route exact path={AppRoute.LOGIN}>
@@ -26,7 +28,6 @@ function App(props) {
         <Route exact path={AppRoute.FAVORITES}>
           <FavoritesPage
             places={places}
-            cityNames={cityNames}
           />
         </Route>
         <Route exact path={AppRoute.OFFER} component={RoomPage}/>
@@ -43,9 +44,7 @@ App.propTypes = {
   places: PropTypes.arrayOf(
     placeCardProp,
   ).isRequired,
-  cityNames: PropTypes.arrayOf(
-    PropTypes.string.isRequired,
-  ).isRequired,
+  cityNames: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default App;

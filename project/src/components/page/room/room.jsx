@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../ui/header/header';
 import NearPlacesList from '../../near-places/near-places-list';
-import { places } from '../../../mock';
+import { places } from '../../../mock/offers';
 
 const MAC_COUNT = 3;
 

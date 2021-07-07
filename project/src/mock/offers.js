@@ -65,4 +65,30 @@ export const places = [
     isPremium: false,
     isFavorite: true,
   },
+  {
+    city: {
+      name: 'Paris',
+    },
+    id: '4',
+    title: 'Nice, cozy, warm big bed apartment',
+    previewImage: 'img/apartment-03.jpg',
+    price: 180,
+    type: 'apartment',
+    rating: 3,
+    isPremium: false,
+    isFavorite: false,
+  },
+  {
+    city: {
+      name: 'Paris',
+    },
+    id: '5',
+    previewImage: 'img/room.jpg',
+    title: 'Wood and stone place',
+    price: 80,
+    type: 'private room',
+    rating: 4,
+    isPremium: false,
+    isFavorite: true,
+  },
 ];
