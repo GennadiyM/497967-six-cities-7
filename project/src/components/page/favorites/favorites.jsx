@@ -6,7 +6,7 @@ import Header from '../../ui/header/header';
 import FavoritesList from '../../favorites-list/favorites-list';
 import FavoritesEmpty from '../../favorites-empty/favorites-empty';
 import Footer from '../../ui/footer/footer';
-import placeCardProp from '../../place-card/place-card.prop';
+import placeProp from '../../place-cards/place-card/place.prop';
 
 const getFavoritePlacesOnSity = (favoritePlaces, city) => (
   {
@@ -40,7 +40,7 @@ function Favorites (props) {
 
 Favorites.propTypes = {
   places: PropTypes.arrayOf(
-    placeCardProp,
+    placeProp,
   ).isRequired,
 };
 

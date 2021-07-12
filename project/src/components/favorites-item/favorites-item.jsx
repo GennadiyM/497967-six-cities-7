@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CardSetting } from '../../const';
-import PlaceCard from '../place-card/place-card';
-import placeCardProp from '../place-card/place-card.prop';
+import PlaceCardFavorites from '../place-cards/place-card-favorites/place-card-favorites';
+import placeProp from '../place-cards/place-card/place.prop';
 
 function FavoritesItem (props) {
   const {city} = props;
@@ -16,7 +15,7 @@ function FavoritesItem (props) {
         </div>
       </div>
       <div className="favorites__places">
-        {city.places.map((place) => <PlaceCard key={place.id} place={place} modifier={CardSetting.FAVORITES_CARD}/>)}
+        {city.places.map((place) => <PlaceCardFavorites key={place.id} place={place}/>)}
       </div>
     </li>
   );
@@ -26,7 +25,7 @@ FavoritesItem.propTypes = {
   city: PropTypes.shape({
     name: PropTypes.string.isRequired,
     places: PropTypes.arrayOf(
-      placeCardProp,
+      placeProp,
     ).isRequired,
   }).isRequired,
 };

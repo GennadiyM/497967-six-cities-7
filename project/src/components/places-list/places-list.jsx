@@ -1,14 +1,39 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { SortType } from '../../const';
-import placeCardProp from '../place-card/place-card.prop';
-import PlaceCard from '../place-card/place-card';
+import placeProp from '../place-cards/place-card/place.prop';
+import PlaceCardMain from '../place-cards/place-card-main/place-card-main';
 import Sorting from '../sorting/sorting';
+
+const getSortByPriceUp = (placeA, placeB) => placeB.price - placeA.price;
+const getSortByPriceDown = (placeA, placeB) => placeA.price - placeB.price;
+const getSortByRating = (placeA, placeB) => placeB.rating - placeA.rating;
 
 function PlacesList (props) {
   const { maxCountCards, places, city } = props;
-  const [currentSortType, setCurrentSortType] = useState(SortType.Popular.VALUE);
+  const [currentSortType, setCurrentSortType] = useState(SortType.Default.VALUE);
+  const [placeActiveId, setPlaceActiveId] = useState('');
   const getCountPlacesToString = (count) => `${count} place${count === 1 ? '' : 's' }`;
+
+  let sortPlaces = places.slice();
+
+  switch(currentSortType) {
+    case SortType.PriceUp.VALUE:
+      sortPlaces.sort(getSortByPriceUp);
+      break;
+
+    case SortType.PriceDown.VALUE:
+      sortPlaces.sort(getSortByPriceDown);
+      break;
+
+    case SortType.Rating.VALUE:
+      sortPlaces.sort(getSortByRating);
+      break;
+
+    default:
+      sortPlaces = places.slice();
+      break;
+  }
 
   return (
     <section className="cities__places places">
@@ -21,7 +46,12 @@ function PlacesList (props) {
       />
 
       <div className="cities__places-list places__list tabs__content">
-        {places.map((place) => <PlaceCard key={place.id} place={place}/>).slice(0, maxCountCards)}
+        {sortPlaces.map((place) => (
+          <PlaceCardMain
+            key={place.id}
+            place={place}
+            changeActivePlaceHandler={setPlaceActiveId}
+          />)).slice(0, maxCountCards)}
       </div>
     </section>
   );
@@ -30,7 +60,7 @@ function PlacesList (props) {
 PlacesList.propTypes = {
   maxCountCards: PropTypes.number.isRequired,
   places: PropTypes.arrayOf(
-    placeCardProp,
+    placeProp,
   ).isRequired,
   city: PropTypes.string,
 };

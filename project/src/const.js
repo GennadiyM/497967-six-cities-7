@@ -12,9 +12,15 @@ export const CardSetting = {
   NEAR_PLACE_CARD: 'NEAR_PLACE_CARD',
 };
 
+export const RatingSetting = {
+  CARD: 'CARD',
+  PROPERTY: 'PROPERTY',
+  REVIEW: 'REVIEW',
+};
+
 export const SortType = {
-  Popular: {
-    VALUE: 'Popular',
+  Default: {
+    VALUE: 'Default',
     NAME: 'Popular',
   },
   PriceUp: {

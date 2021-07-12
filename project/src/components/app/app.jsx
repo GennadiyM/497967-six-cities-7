@@ -7,7 +7,7 @@ import SignPage from '../page/sign-in/sign-in';
 import RoomPage from '../page/room/room';
 import NotFoundPage from '../page/not-found/not-found';
 import FavoritesPage from '../page/favorites/favorites';
-import placeCardProp from '../place-card/place-card.prop';
+import placeProp from '../place-cards/place-card/place.prop';
 
 function App(props) {
   const { maxCountCards, places, cityNames } = props;
@@ -30,7 +30,7 @@ function App(props) {
             places={places}
           />
         </Route>
-        <Route exact path={AppRoute.OFFER} component={RoomPage}/>
+        <Route exact path={AppRoute.OFFER} component={RoomPage} />
         <Route>
           <NotFoundPage />
         </Route>
@@ -42,7 +42,7 @@ function App(props) {
 App.propTypes = {
   maxCountCards: PropTypes.number.isRequired,
   places: PropTypes.arrayOf(
-    placeCardProp,
+    placeProp,
   ).isRequired,
   cityNames: PropTypes.arrayOf(PropTypes.string),
 };

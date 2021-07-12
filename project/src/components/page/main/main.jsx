@@ -1,6 +1,6 @@
-import React , { useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import placeCardProp from '../../place-card/place-card.prop';
+import placeProp from '../../place-cards/place-card/place.prop';
 import Header from '../../ui/header/header';
 import Location from '../../location/location';
 import MainEmpty from '../../main-empty/main-empty';
@@ -52,9 +52,9 @@ function Main(props) {
 Main.propTypes = {
   maxCountCards: PropTypes.number.isRequired,
   places: PropTypes.arrayOf(
-    placeCardProp,
+    placeProp,
   ).isRequired,
-  cityNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+  cityNames: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };
 
 export default Main;
