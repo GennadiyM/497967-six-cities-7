@@ -1,11 +1,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { SITY_NAMES } from '../../../const';
 import Header from '../../ui/header/header';
 import FavoritesList from '../../favorites-list/favorites-list';
 import FavoritesEmpty from '../../favorites-empty/favorites-empty';
 import Footer from '../../ui/footer/footer';
-import placeCardProp from '../../place-card/place-card.prop';
+import placeProp from '../../place-cards/place-card/place.prop';
 
 const getFavoritePlacesOnSity = (favoritePlaces, city) => (
   {
@@ -15,11 +16,11 @@ const getFavoritePlacesOnSity = (favoritePlaces, city) => (
 );
 
 function Favorites (props) {
-  const {places, cityNames} = props;
+  const { places } = props;
 
   const favoritePlaces = places.filter((place) => place.isFavorite);
 
-  const favoritePlacesOnSity = cityNames.map((city) => getFavoritePlacesOnSity(favoritePlaces, city)).filter((city) => city.places.length !== 0);
+  const favoritePlacesOnSity = SITY_NAMES.map((city) => getFavoritePlacesOnSity(favoritePlaces, city)).filter((city) => city.places.length !== 0);
 
   return (
     <div className="page">
@@ -39,10 +40,7 @@ function Favorites (props) {
 
 Favorites.propTypes = {
   places: PropTypes.arrayOf(
-    placeCardProp,
-  ).isRequired,
-  cityNames: PropTypes.arrayOf(
-    PropTypes.string.isRequired,
+    placeProp,
   ).isRequired,
 };
 

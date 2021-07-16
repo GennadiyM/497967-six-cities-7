@@ -12,4 +12,29 @@ export const CardSetting = {
   NEAR_PLACE_CARD: 'NEAR_PLACE_CARD',
 };
 
+export const RatingSetting = {
+  CARD: 'CARD',
+  PROPERTY: 'PROPERTY',
+  REVIEW: 'REVIEW',
+};
+
+export const SortType = {
+  Default: {
+    VALUE: 'Default',
+    NAME: 'Popular',
+  },
+  PriceUp: {
+    VALUE: 'PriceUp',
+    NAME: 'Price: low to high',
+  },
+  PriceDown: {
+    VALUE: 'PriceDown',
+    NAME: 'Price: high to low',
+  },
+  Rating: {
+    VALUE: 'Rating',
+    NAME: 'Top rated first',
+  },
+};
+
 export const SITY_NAMES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];

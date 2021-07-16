@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FavoritesItem from '../favorites-item/favorites-item';
-import placeCardProp from '../place-card/place-card.prop';
+import placeProp from '../place-cards/place-card/place.prop';
 
 function FavoritesList (props) {
   const {favoritePlacesOnSity} = props;
@@ -22,7 +22,7 @@ FavoritesList.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       places: PropTypes.arrayOf(
-        placeCardProp,
+        placeProp,
       ).isRequired,
     }).isRequired,
   ).isRequired,

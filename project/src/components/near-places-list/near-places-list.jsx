@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlaceCard from '../place-card/place-card';
-import placeCardProp from '../place-card/place-card.prop';
-import { CardSetting } from '../../const';
+import PlaceCardNear from '../place-cards/place-card-near/place-card-near';
+import placeProp from '../place-cards/place-card/place.prop';
+
 
 function NearPlacesList(props) {
   const {nearbyPlaces} = props;
@@ -11,7 +11,7 @@ function NearPlacesList(props) {
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
       <div className="near-places__list places__list">
-        {nearbyPlaces.map((place) => <PlaceCard key={place.id} place={place} modifier={CardSetting.NEAR_PLACE_CARD} />)}
+        {nearbyPlaces.map((place) => <PlaceCardNear key={place.id} place={place} />)}
       </div>
     </section>
   );
@@ -19,7 +19,7 @@ function NearPlacesList(props) {
 
 NearPlacesList.propTypes = {
   nearbyPlaces: PropTypes.arrayOf(
-    placeCardProp,
+    placeProp,
   ).isRequired,
 };
 

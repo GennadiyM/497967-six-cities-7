@@ -1,39 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import PlaceCard from '../../place-card/place-card';
-import placeCardProp from '../../place-card/place-card.prop';
+import placeProp from '../../place-cards/place-card/place.prop';
 import Header from '../../ui/header/header';
 import Location from '../../location/location';
-import Sorting from '../../sorting/sorting';
+import MainEmpty from '../../main-empty/main-empty';
+import PlacesList from '../../places-list/places-list';
 import Map from '../../map/map';
 
 function Main(props) {
-  const {maxCountCards, places} = props;
+  const { maxCountCards, places, cityNames } = props;
+  const [cityDefault] = cityNames;
+  const [cityActive, setCityActive] = useState(cityDefault);
+  const placesOnCurrentCity = places.filter((place) => place.city.name === cityActive);
 
   return (
-    <div className="page page--gray page--main">
+    <div className={`page page--gray page--main ${placesOnCurrentCity.length === 0 && 'page__main--index-empty'}`}>
       <Header />
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
 
-        <Location />
+        <Location
+          cityNames={cityNames}
+          cityActive={cityActive}
+          changeCityHandler={setCityActive}
+        />
 
         <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">312 places to stay in Amsterdam</b>
+          <div className={`cities__places-container container ${placesOnCurrentCity.length === 0 && 'cities__places-container--empty'}`}>
 
-              <Sorting />
+            {placesOnCurrentCity.length === 0 ?
+              <MainEmpty /> :
+              <PlacesList
+                places={placesOnCurrentCity}
+                maxCountCards={maxCountCards}
+                city={cityActive}
+              />}
 
-              <div className="cities__places-list places__list tabs__content">
-                {places.map((place) => <PlaceCard key={place.id} place={place}/>).slice(0, maxCountCards)}
-              </div>
-            </section>
             <div className="cities__right-section">
 
-              <Map />
+              {placesOnCurrentCity.length !== 0 && <Map />}
 
             </div>
           </div>
@@ -46,8 +52,9 @@ function Main(props) {
 Main.propTypes = {
   maxCountCards: PropTypes.number.isRequired,
   places: PropTypes.arrayOf(
-    placeCardProp,
+    placeProp,
   ).isRequired,
+  cityNames: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };
 
 export default Main;

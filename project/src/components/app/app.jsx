@@ -7,10 +7,11 @@ import SignPage from '../page/sign-in/sign-in';
 import RoomPage from '../page/room/room';
 import NotFoundPage from '../page/not-found/not-found';
 import FavoritesPage from '../page/favorites/favorites';
-import placeCardProp from '../place-card/place-card.prop';
+import placeProp from '../place-cards/place-card/place.prop';
 
 function App(props) {
-  const {maxCountCards, places, cityNames} = props;
+  const { maxCountCards, places, cityNames } = props;
+
   return (
     <BrowserRouter>
       <Switch>
@@ -18,6 +19,7 @@ function App(props) {
           <MainPage
             maxCountCards={maxCountCards}
             places={places}
+            cityNames={cityNames}
           />
         </Route>
         <Route exact path={AppRoute.LOGIN}>
@@ -26,10 +28,9 @@ function App(props) {
         <Route exact path={AppRoute.FAVORITES}>
           <FavoritesPage
             places={places}
-            cityNames={cityNames}
           />
         </Route>
-        <Route exact path={AppRoute.OFFER} component={RoomPage}/>
+        <Route exact path={AppRoute.OFFER} component={RoomPage} />
         <Route>
           <NotFoundPage />
         </Route>
@@ -41,11 +42,9 @@ function App(props) {
 App.propTypes = {
   maxCountCards: PropTypes.number.isRequired,
   places: PropTypes.arrayOf(
-    placeCardProp,
+    placeProp,
   ).isRequired,
-  cityNames: PropTypes.arrayOf(
-    PropTypes.string.isRequired,
-  ).isRequired,
+  cityNames: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default App;

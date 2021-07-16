@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
+import { places } from './mock/offers';
 import { SITY_NAMES } from './const';
-import { places } from './mock';
 
 const Setting = {
   MAX_COUNT_CARDS: 5,
