@@ -37,4 +37,17 @@ export const SortType = {
   },
 };
 
+export const CustomPin = {
+  DEFAULT: {
+    iconUrl: 'img/pin.svg',
+    iconSize: [27, 39],
+    iconAnchor: [13, 39],
+  },
+  ACTIVE: {
+    iconUrl: 'img/pin-active.svg',
+    iconSize: [27, 39],
+    iconAnchor: [13, 39],
+  },
+};
+
 export const SITY_NAMES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];

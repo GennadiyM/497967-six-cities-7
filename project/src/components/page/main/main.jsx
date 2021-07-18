@@ -12,6 +12,11 @@ function Main(props) {
   const [cityDefault] = cityNames;
   const [cityActive, setCityActive] = useState(cityDefault);
   const placesOnCurrentCity = places.filter((place) => place.city.name === cityActive);
+  const [activePlaceId, setActivePlaceId] = useState(null);
+
+  const onListItemHover = (id) => {
+    setActivePlaceId(id);
+  };
 
   return (
     <div className={`page page--gray page--main ${placesOnCurrentCity.length === 0 && 'page__main--index-empty'}`}>
@@ -34,12 +39,13 @@ function Main(props) {
               <PlacesList
                 places={placesOnCurrentCity}
                 maxCountCards={maxCountCards}
+                onListItemHover={onListItemHover}
                 city={cityActive}
               />}
 
             <div className="cities__right-section">
 
-              {placesOnCurrentCity.length !== 0 && <Map />}
+              {placesOnCurrentCity.length !== 0 && <Map places={placesOnCurrentCity} activePlaceId={activePlaceId}/>}
 
             </div>
           </div>
