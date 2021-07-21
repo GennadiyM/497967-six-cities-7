@@ -18,8 +18,8 @@ function PlaceCardMain(props) {
     <PlaceCard
       setting={Setting}
       place={place}
-      onMouseOver={() => changeActivePlaceHandler(place.id)}
-      onMouseOut={() => changeActivePlaceHandler('')}
+      onMouseEnter={() => changeActivePlaceHandler(place.id)}
+      onMouseLeave={() => changeActivePlaceHandler(null)}
     />
   );
 }

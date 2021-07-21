@@ -10,9 +10,9 @@ const getSortByPriceDown = (placeA, placeB) => placeA.price - placeB.price;
 const getSortByRating = (placeA, placeB) => placeB.rating - placeA.rating;
 
 function PlacesList (props) {
-  const { maxCountCards, places, city } = props;
+  const { maxCountCards, places, city, onListItemHover } = props;
   const [currentSortType, setCurrentSortType] = useState(SortType.Default.VALUE);
-  const [placeActiveId, setPlaceActiveId] = useState('');
+
   const getCountPlacesToString = (count) => `${count} place${count === 1 ? '' : 's' }`;
 
   let sortPlaces = places.slice();
@@ -50,7 +50,7 @@ function PlacesList (props) {
           <PlaceCardMain
             key={place.id}
             place={place}
-            changeActivePlaceHandler={setPlaceActiveId}
+            changeActivePlaceHandler={onListItemHover}
           />)).slice(0, maxCountCards)}
       </div>
     </section>
@@ -63,6 +63,7 @@ PlacesList.propTypes = {
     placeProp,
   ).isRequired,
   city: PropTypes.string,
+  onListItemHover: PropTypes.func.isRequired,
 };
 
 export default PlacesList;
