@@ -11,6 +11,8 @@ import Reviews from  '../../reviews/reviews';
 import ReviewForm  from '../../form/review/review';
 import Host from  '../../property/host/host';
 import NearPlacesList from '../../near-places-list/near-places-list';
+import Map from '../../map/map';
+
 import './room.css';
 
 const MAX_COUNT = 3;
@@ -77,14 +79,17 @@ function Room () {
               <section className="property__reviews reviews">
 
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{placeReviews ? placeReviews.length : 0}</span></h2>
-                {placeReviews && <Reviews reviews={placeReviews} />}
+
+                {placeReviews.length !== 0 && <Reviews reviews={placeReviews} />}
 
                 <ReviewForm />
 
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          <section className="property__map map">
+            {places.length !== 0 && <Map places={places.slice(0, MAX_COUNT)} />}
+          </section>
         </section>
         <div className="container">
           <NearPlacesList nearbyPlaces={places.slice(0, MAX_COUNT)} />
